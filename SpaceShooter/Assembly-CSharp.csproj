@@ -63,34 +63,6 @@
      <Compile Include="Assets\Scripts\Mover.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\RandomRotator.cs" />
-     <Compile Include="Assets\UnityFS\Scripts\Aircraft.cs" />
-     <Compile Include="Assets\UnityFS\Scripts\BaseClasses\AircraftAttachment.cs" />
-     <Compile Include="Assets\UnityFS\Scripts\BaseClasses\AircraftCamera.cs" />
-     <Compile Include="Assets\UnityFS\Scripts\Cameras\CockpitCam.cs" />
-     <Compile Include="Assets\UnityFS\Scripts\Cameras\OrbitCam.cs" />
-     <Compile Include="Assets\UnityFS\Scripts\Cameras\TowerCam.cs" />
-     <Compile Include="Assets\UnityFS\Scripts\Cameras\VelocityCam.cs" />
-     <Compile Include="Assets\UnityFS\Scripts\Cockpit\AttitudeIndicator.cs" />
-     <Compile Include="Assets\UnityFS\Scripts\Cockpit\NeedleInstrument.cs" />
-     <Compile Include="Assets\UnityFS\Scripts\Cockpit\RudderPedal.cs" />
-     <Compile Include="Assets\UnityFS\Scripts\Cockpit\ThrottleStick.cs" />
-     <Compile Include="Assets\UnityFS\Scripts\Cockpit\Yoke.cs" />
-     <Compile Include="Assets\UnityFS\Scripts\Dynamics\Aerofoil.cs" />
-     <Compile Include="Assets\UnityFS\Scripts\Dynamics\CenterOfGravity.cs" />
-     <Compile Include="Assets\UnityFS\Scripts\Dynamics\ControlSurface.cs" />
-     <Compile Include="Assets\UnityFS\Scripts\Dynamics\Engine.cs" />
-     <Compile Include="Assets\UnityFS\Scripts\Dynamics\GroundEffect.cs" />
-     <Compile Include="Assets\UnityFS\Scripts\Dynamics\PropWash.cs" />
-     <Compile Include="Assets\UnityFS\Scripts\Dynamics\Wing.cs" />
-     <Compile Include="Assets\UnityFS\Scripts\External\LandingGear.cs" />
-     <Compile Include="Assets\UnityFS\Scripts\External\StallWarner.cs" />
-     <Compile Include="Assets\UnityFS\Scripts\External\SteerableNosewheel.cs" />
-     <Compile Include="Assets\UnityFS\Scripts\External\WheelAudio.cs" />
-     <Compile Include="Assets\UnityFS\Scripts\External\WheelBrake.cs" />
-     <Compile Include="Assets\UnityFS\Scripts\External\WindAudio.cs" />
-     <Compile Include="Assets\UnityFS\Scripts\Helpers\InputController.cs" />
-     <Compile Include="Assets\UnityFS\Scripts\Helpers\MirrorWing.cs" />
-     <None Include="Assets\UnityFS\Changelog.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>
