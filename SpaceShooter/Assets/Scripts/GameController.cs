@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour 
 {
 	public GameObject hazard;
+	public GameObject enemyShip;
 	public Vector3 spawnValues;
 	public int hazardCount;
 	public float spawnWait;
@@ -58,8 +59,16 @@ public class GameController : MonoBehaviour
 
 				yield return new WaitForSeconds(spawnWait);
 			}
-			yield return new WaitForSeconds(waveWait);
+			//yield return new WaitForSeconds(waveWait);
 
+			for(int i = 0; i < 3; i++)
+			{
+				Vector3 spawnPosition = new Vector3(Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
+				Instantiate(enemyShip, spawnPosition, enemyShip.transform.rotation);
+				yield return new WaitForSeconds(spawnWait);
+			}
+
+			yield return new WaitForSeconds(waveWait);
 			/*
 			if(gameOver)
 			{
