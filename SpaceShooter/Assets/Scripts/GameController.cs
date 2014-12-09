@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
 	public Text scoreText;
 	public Text restartText;
 	public Text gameOverText;
+	public Text levelText;
 
 	private bool gameOver;
 	private bool restart;
@@ -27,8 +28,11 @@ public class GameController : MonoBehaviour
 		restart = false;
 		restartText.text = "";
 		gameOverText.text = "";
+		levelText.text = "";
 
 		UpdateScore ();
+
+		StartCoroutine(ShowLevel (1));
 
 		StartCoroutine(SpawnWaves ());
 	}
@@ -87,15 +91,30 @@ public class GameController : MonoBehaviour
 
 	void UpdateScore()
 	{
-		scoreText.text = "Score: " + score;
+		scoreText.text = "SCORE " + score;
 	}
 
 	public void GameOver()
 	{
-		gameOverText.text = "Game Over!";
+		gameOverText.text = "GAME OVER!";
 		gameOver = true;
 
-		restartText.text = "Press 'R' for Restart";
+		restartText.text = "'R' FOR RESTART";
 		restart = true;
+	}
+
+	IEnumerator ShowLevel(int level)
+	{
+		levelText.text = "LEVEL " + level;
+		yield return new WaitForSeconds (1.0f);
+		for (int i = levelText.fontSize; i > 0; i--)
+		{
+			yield return new WaitForSeconds(0.03f);
+			levelText.fontSize--;
+
+		}
+		levelText.text = "";
+		yield return null;
+	
 	}
 }
