@@ -30,6 +30,7 @@ public class EnemyController : MonoBehaviour
 			nextFire = Time.time + fireRate;
 			//GameObject clone = 
 			Instantiate (enemyShot, shotSpawn.position, shotSpawn.rotation); // as GameObject;
+			audio.Play();
 			//audio.Play ();
 		}
 		//FireShot ();

@@ -29,18 +29,26 @@ public class DestroyByContact : MonoBehaviour
 		{
 			return;
 		}
-
-		Instantiate (explosion, transform.position, transform.rotation);
-
-		if (other.tag == "Player")
+		if (other.tag == "PlayerBolt")
 		{
+			Instantiate (explosion, transform.position, transform.rotation);
+			gameController.AddScore(scoreValue);
+			Destroy(other.gameObject);
+			Destroy(gameObject);
+		}
+		else if (other.tag == "Player")
+		{
+			Instantiate (explosion, transform.position, transform.rotation);
 			Instantiate (playerExplosion, other.transform.position, other.transform.rotation);
 			gameController.GameOver();
+			Destroy(other.gameObject);
+			Destroy(gameObject);
 		}
 
-		gameController.AddScore (scoreValue);
+		/*gameController.AddScore (scoreValue);
 
 		Destroy (other.gameObject);
 		Destroy (gameObject);
+		*/
 	}
 }
