@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
 	public GameObject enemyShip;
 	public Vector3 spawnValues;
 	public int hazardCount;
+	public int enemyCount;
 	public float spawnWait;
 	public float startWait;
 	public float waveWait;
@@ -19,26 +20,49 @@ public class GameController : MonoBehaviour
 
 	private bool gameOver;
 	private bool restart;
+	private bool spawnFinished;
 	private int score;
+
+	private const int MaxLevel = 10;
+	private const int MaxLives = 3;
+
+	private int currentLevel = 1;
+	private int livesLeft = 3;
+
+
 
 	void Start()
 	{
 		score = 0;
 		gameOver = false;
 		restart = false;
+		spawnFinished = false;
 		restartText.text = "";
 		gameOverText.text = "";
 		levelText.text = "";
 
 		UpdateScore ();
 
-		StartCoroutine(ShowLevel (1));
+		StartCoroutine(ShowLevel (currentLevel));
 
 		StartCoroutine(SpawnWaves ());
 	}
 
 	void Update()
 	{
+		if(currentLevel < 11 && !gameOver && spawnFinished)
+		{
+			spawnFinished = false;
+			StartCoroutine(ShowLevel (currentLevel));
+			StartCoroutine (SpawnWaves ());
+
+		}
+
+
+		//if(!gameOver)
+		//	StartCoroutine(SpawnWaves ());
+
+
 		if (restart)
 		{
 			if(Input.GetKeyDown (KeyCode.R))
@@ -49,13 +73,15 @@ public class GameController : MonoBehaviour
 		}
 	}
 
+
+
 	IEnumerator SpawnWaves()
 	{
 		yield return new WaitForSeconds (startWait);
 
 		while(true)
 		{
-			for (int i =0; i<hazardCount;i++) 
+			for (int i =0; i < hazardCount * currentLevel; i++) 
 			{
 				Vector3 spawnPosition = new Vector3 (Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
 				Quaternion spawnRotation = Quaternion.identity;
@@ -63,16 +89,24 @@ public class GameController : MonoBehaviour
 
 				yield return new WaitForSeconds(spawnWait);
 			}
-			//yield return new WaitForSeconds(waveWait);
 
-			for(int i = 0; i < 3; i++)
+			// spawn enemy ships
+			for(int i = 0; i < enemyCount * currentLevel; i++)
 			{
 				Vector3 spawnPosition = new Vector3(Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
 				Instantiate(enemyShip, spawnPosition, enemyShip.transform.rotation);
 				yield return new WaitForSeconds(spawnWait);
 			}
+			//increse current level by 1 and ends the coroutine
+			if(currentLevel < 9)
+				currentLevel++;
 
-			yield return new WaitForSeconds(waveWait);
+			spawnFinished = true;
+
+			yield return new WaitForSeconds(waveWait);  // wait for a few seconds before spawning next wave
+			yield return null;
+
+			//yield return new WaitForSeconds(waveWait);
 			/*
 			if(gameOver)
 			{
@@ -106,6 +140,7 @@ public class GameController : MonoBehaviour
 	IEnumerator ShowLevel(int level)
 	{
 		levelText.text = "LEVEL " + level;
+		levelText.fontSize = 80;	//resets text to its default size
 		yield return new WaitForSeconds (1.0f);
 		for (int i = levelText.fontSize; i > 0; i--)
 		{

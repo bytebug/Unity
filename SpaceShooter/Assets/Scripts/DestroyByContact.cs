@@ -31,6 +31,12 @@ public class DestroyByContact : MonoBehaviour
 			return;
 		}
 
+		// following if statement checks if player bolt & enemy bolt collides, if so then do nothing and return
+		if (other.tag == "PlayerBolt" && gameObject.tag == "EnemyBolt")
+		{
+			return;
+		}
+
 		if (other.tag == "PlayerBolt")
 		{
 			Instantiate (explosion, transform.position, transform.rotation);
